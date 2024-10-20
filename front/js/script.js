@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Cridem a l'endpoint de l'API fent un fetch
-    ______________________________________________
+    fetch('http://127.0.0.1:8000/alumne/list',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+    })  // Aquí debes poner la URL del API_________________________________________
         .then(response => {
             if (!response.ok) {
                 throw new Error("Error a la resposta del servidor");
@@ -16,13 +22,26 @@ document.addEventListener("DOMContentLoaded", function() {
                 const row = document.createElement("tr");
 
                 const nomAluCell = document.createElement("td");
-                nomAluCell.textContent = alumne.NomAlumne;
+                nomAluCell.textContent = alumne.Nombre;
                 row.appendChild(nomAluCell);
 
-                // Repetir per tots els altres camps restants que retorna l'endpoint
-                _____________________________________________
+                const cicAluCell = document.createElement("td");
+                cicAluCell.textContent = alumne.Ciclo;
+                row.appendChild(cicAluCell);
 
-                
+                const curAluCell = document.createElement("td");
+                curAluCell.textContent = alumne.Curso;
+                row.appendChild(curAluCell);
+
+                const gruAluCell = document.createElement("td");
+                gruAluCell.textContent = alumne.Grupo;
+                row.appendChild(gruAluCell);
+
+                const descAluCell = document.createElement("td");
+                descAluCell.textContent = alumne.DescAula;
+                row.appendChild(descAluCell);
+
+                ____________________________________________
 
                 alumnesTableBody.appendChild(row);
             });

@@ -6,6 +6,82 @@
     <title>Llista d'alumnes</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%; 
+    max-width: 800px;  
+    margin: 0 auto;  
+}
+
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Botón general */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.back-button {
+    margin-top: 20px; 
+}
+
+.tabla-alumne {
+    width: 100%;
+    border-collapse: collapse;  
+    margin: 0 auto;  
+}
+
+.tabla-alumne th,
+.tabla-alumne td {
+    padding: 10px;
+    text-align: left;
+    border: 2px solid #007bff;  
+}
+
+.tabla-alumne th {
+    background-color: #007bff;
+    color: white;
+    text-align: left;  
+}
+
+.tabla-alumne tr:nth-child(even) {
+    background-color: #f9f9f9;  
+}
+
+.tabla-alumne tr:hover {
+    background-color: #f1f1f1;  
+}
+
+</style>
 <body>
     <div class="container">
         <h1>Llista d'alumnes</h1>
@@ -26,6 +102,58 @@
         <button class="back-button" onclick="window.history.back()">Tornar</button>
     </div>
 
-    <script src="../js/script.js"></script> <!-- Script para cargar los alumnos -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        // Cridem a l'endpoint de l'API fent un fetch
+        fetch('http://127.0.0.1:8000/alumne/list',
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+        })  // Aquí debes poner la URL del API_________________________________________
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error a la resposta del servidor");
+                }
+                return response.json();
+            })
+            .then(data => {
+                const alumnesTableBody = document.querySelector("#tablaAlumne tbody");
+                alumnesTableBody.innerHTML = ""; // Netejar la taula abans d'afegir res
+                
+                // Iterar sobre los alumnos y agregarlos al DOM
+                data.forEach(alumno => {
+                    const row = document.createElement("tr");
+
+                    const nomAluCell = document.createElement("td");
+                    nomAluCell.textContent = alumno.Nombre;
+                    row.appendChild(nomAluCell);
+
+                    const cicAluCell = document.createElement("td");
+                    cicAluCell.textContent = alumno.Ciclo;
+                    row.appendChild(cicAluCell);
+
+                    const curAluCell = document.createElement("td");
+                    curAluCell.textContent = alumno.Curso;
+                    row.appendChild(curAluCell);
+
+                    const gruAluCell = document.createElement("td");
+                    gruAluCell.textContent = alumno.Grupo;
+                    row.appendChild(gruAluCell);
+
+                    const descAluCell = document.createElement("td");
+                    descAluCell.textContent = alumno.DescAula;
+                    row.appendChild(descAluCell);
+
+                    alumnesTableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error("Error capturat:", error);
+                alert("Error al carregar la llista d'alumnes");
+            });
+        });    
+    </script> <!-- Script para cargar los alumnos -->
 </body>
 </html>
