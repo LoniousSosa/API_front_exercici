@@ -30,3 +30,25 @@ En la primea imagen se ve como solo se muestra un solo alumno, siendo el de id 1
 empiece por el segundo registro.
 
 
+
+En cuanto al order by, he introducido un componente más que determinará si el orden en el que se muestran los parametros es ascendiente o descendiente
+
+![image](https://github.com/user-attachments/assets/f0625144-d32e-4430-9adf-94b7b954b69b)
+
+
+Como se puede ver, estan ordenados por el nombre de forma ascendente.
+
+
+![image](https://github.com/user-attachments/assets/be72f699-60ad-4f99-aec4-45437595bb68)
+
+
+
+
+Si cambiamos el asc a desc, el orden cambiará a descendiente:
+
+
+![image](https://github.com/user-attachments/assets/3abe2637-79cd-4762-9966-3247faa548ed)
+
+
+
+![image](https://github.com/user-attachments/assets/0290ba47-bfeb-40ff-93b2-8e42375c0fbf)
