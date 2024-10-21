@@ -26,7 +26,7 @@ skip con limit 1 y skip 0:
 
 
 
-La primera imagen muestra como solo se muestra un solo alumno, siendo el de id 1. Sin embargo, en la segunda se puede ver al otro alumno, ya que en la setencia declaramos que
+En la primea imagen se ve como solo se muestra un solo alumno, siendo el de id 1. Sin embargo, en la segunda se puede ver al otro alumno, ya que en la setencia declaramos que
 empiece por el segundo registro.
 
 
