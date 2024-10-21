@@ -52,3 +52,19 @@ Si cambiamos el asc a desc, el orden cambiará a descendiente:
 
 
 ![image](https://github.com/user-attachments/assets/0290ba47-bfeb-40ff-93b2-8e42375c0fbf)
+
+
+
+Para terminar, para que funcione el contain necesitaremos introducir la siguiente sentencia, que buscará los alumnos con un for each 
+que cumplan con el nombre establecido en los parametros y cambiará el valor de alumnos_sch a la nueva lista de alumnos:
+
+![image](https://github.com/user-attachments/assets/34e76c49-3715-4be3-ab09-26deab125e58)
+
+
+
+El resultado:
+
+![image](https://github.com/user-attachments/assets/46386b5f-d96d-4340-96d2-5752d2da7696)
+
+
+Para probar el código mejor, se podria crear un nuevo usuario Antonio para demostrar que no estamos usando el skip y limit.
