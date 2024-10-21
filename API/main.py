@@ -51,17 +51,24 @@ async def read_alumnes():
     return FileResponse("API_front_exercici/front/html/alumnes.html")
 
 @app.get("/alumne/list", response_model= List[tablaAlumno])
-def read_alumnos():
+def read_alumnos(orderby: str = "Nombre",   orderdir: str = "desc", contain: str = "Antonio", skip: int = 0, limit: int = 4):
     adb = db_alumnos.read()
     alumnos_sch = alumnos.alumnos_schema(adb)
     
-    return alumnos_sch
+    if contain:
+        alumnos_sch = [alumno for alumno in alumnos_sch if contain.lower() in alumno["Nombre"].lower()]
+
+    if orderby:
+        reverse = orderdir == "desc"
+        alumnos_sch = sorted(alumnos_sch, key=lambda x: x.get(orderby, ""), reverse=reverse)
+
+    return alumnos_sch[skip : skip+limit]
 
 @app.get("/alumne/show/{id}",response_model= List[dict])
 def read_alumno_id(id:int):
     if db_alumnos.read_id(id) is not None:
         adb = db_alumnos.read_id(id)
-        alumno = alumnos.alumnos_schema(adb)
+        alumno = alumnos.alumno_schema(adb)
     
     else:
         raise HTTPException(status_code=404,detail="Item not found")
